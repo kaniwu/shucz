@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>素材上传</title>
+	
+    <meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
+    <meta http-equiv="description" content="this is my page">
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    
+    <!--<link rel="stylesheet" type="text/css" href="./styles.css">-->
+	<style type="text/css">
+		input, textarea ,select{
+		    padding: 9px;
+		    border: solid 1px #E5E5E5;
+		    outline: 0;
+		    font: normal 18px/100% Verdana, Tahoma, sans-serif;
+		    width: 200px;
+		    background: #FFFFFF url('bg_form.png') left top repeat-x;
+		    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #EEEEEE), to(#FFFFFF));
+		    background: -moz-linear-gradient(top, #FFFFFF, #EEEEEE 1px, #FFFFFF 25px);
+		    box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+		    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+		    -webkit-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+		    }
+		    
+ 		#btn{
+ 			width: 60px;
+ 			margin-left: 10px;
+		    color: #999999;
+		    font-size: 18px;
+ 		}
+ 		
+		textarea {
+		    width: 500px;
+		    max-width: 500px;
+		    height: 200px;
+		    line-height: 150%;
+		    }
+		 
+		input:hover, textarea:hover,select:hover
+		input:focus, textarea:focus ,select:hover{
+		    border-color: #C9C9C9;
+		    -webkit-box-shadow: rgba(0, 0, 0, 0.15) 0px 0px 8px;
+		    }
+		 
+		.form label {
+		    margin-left: 10px;
+		    font-size: 18px;
+		    color: #999999;
+		    }
+		 
+		.submit input {
+		    width: auto;
+		    padding: 9px 15px;
+		    background: #617798;
+		    border: 0;
+		    font-size: 18px;
+		    color: #FFFFFF;
+		    -moz-border-radius: 5px;
+		    -webkit-border-radius: 5px;
+		    }
+	</style>
+	<script type="text/javascript">
+	function doSubmit(){
+		var dataForm = document.dataForm;
+		var fileName = dataForm.textfield.value;
+		//alert("filename:"+fileName);
+		
+		if(""==dataForm.title.value){
+			alert("名称字段不能为空！");
+			return false;
+		}
+		if(""==dataForm.nation.value){
+			alert("地区字段不能为空！");
+			return false;
+		}
+		if(""==dataForm.type.value){
+			alert("素材类型不能为空!");
+			return false;
+		}
+		if(""==dataForm.textfield.value){
+			alert("请点击浏览上传您图片！");
+			return false;
+		}
+		if(""==dataForm.textarea.value){
+			alert("请填写图片描述！");
+			return false;
+		}
+		
+		var fileType = fileName.substring(fileName.lastIndexOf(".")+1,fileName.length);
+		//alert("fileType:"+fileType);
+		var typeArr = new Array("JPG","PNG");
+		var isContain = false;
+		for (var i = 0; i < typeArr.length;i++){
+			if(fileType.toUpperCase() == typeArr[i]){
+				isContain = true;
+				break;
+			}
+		}
+		if(!isContain){
+			alert("图片格式必须为：jpg,png!");
+			return false;
+		}
+		dataForm.action = "servlet/Upload?action=uploadFile";
+			dataForm.submit();
+	}
+	
+	function checkType(value){
+		if("text"==value){
+			document.getElementById("file").style.display="none";
+			document.getElementById("fileLab").style.display="none";
+		}else if("image"==value){
+			document.getElementById("file").style.display="block";
+			document.getElementById("fileLab").style.display="block";
+		}
+	}
+	
+	</script>
+  </head>
+  
+  <body style="text-align:">
+  	<div style="width:430px;height:500px; margin:0 auto; margin-top:100px;">
+		   <form class="form" method="post" enctype="multipart/form-data" id="dataForm" name="dataForm">
+		 
+		    <p class="name">
+		        <input type="text" name="title" id="title" />
+		        <label for="name">名称</label>
+		    </p>
+		 
+		    <p class=nation>
+		        <!--  <input type="text" name="nation" id="nation" />-->
+		        <SELECT name="nation" id="nation" style="width:220px;">
+					    <OPTION value=""  selected="selected"></OPTION>
+					    <OPTION value="Taiwan" >Taiwan</OPTION>
+					    <OPTION value="USA">USA</OPTION>
+				</SELECT>
+		        <label for="web">地区</label>
+		    </p>
+		    
+		    <p class=type>
+		        <!--  <input type="text" name="type" id="type" />-->
+		        <SELECT name="type" id="type" style="width:220px;" onChange="checkType(this.options[this.selectedIndex].value);">
+					    <OPTION value=""  selected="selected"></OPTION>
+					    <OPTION value="text" >text</OPTION>
+					    <OPTION value="image">image</OPTION>
+				</SELECT>
+		        <label for="web">素材类型</label>
+		    </p>
+		 	
+		 	<p class="file" id="file" >
+		    	<!--  
+		    	<input type="text" name="email" id="id='textfield'" />
+		        <input type="file" name="file" id="id='textfield'" onchange="document.getElementById('textfield').value=this.value"/>
+		        -->
+		        <input type='text' name='textfield' id='textfield' class='txt' />  
+ 				<input type='button' class='btn' id='btn' onclick="fileField.click(this.value)" value='浏览...' />
+    			<input type="file" name="fileField" class="file" id="fileField" onchange="document.getElementById('textfield').value=this.value " style="display:none"/>
+		    </p>
+		    <label id="fileLab" style="font-size:13px">图片格式为：jpg，png。</label>
+		 	
+		    <p class="text">
+		        <textarea name="textarea" id="textarea"></textarea>
+		    </p>
+		 	
+		    <p class="submit">
+		        <input type="submit" value="Send" onclick="doSubmit();"/>
+		    </p>
+		 
+		</form>
+	</div>
+  </body>
+</html>

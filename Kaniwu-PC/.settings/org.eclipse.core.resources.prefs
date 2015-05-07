@@ -1,0 +1,12 @@
+#Tue Jan 13 19:29:10 CST 2015
+eclipse.preferences.version=1
+encoding//WebRoot/index.html=UTF-8
+encoding//etc/c3p0.properties=UTF-8
+encoding//etc/wechat.properties=UTF-8
+encoding//src/c3p0.properties=UTF-8
+encoding//src/com/gmail/wuruobing123/PushManage.java=UTF-8
+encoding//src/com/gmail/wuruobing123/WeixinServlet.java=UTF-8
+encoding//src/com/kaniwu/handle/impl/MessageProcessingHandlerImpl.java=UTF-8
+encoding//src/com/kaniwu/util/HttpKit.java=UTF-8
+encoding//src/com/kaniwu/util/OauthWeChat.java=UTF-8
+encoding/<project>=GBK

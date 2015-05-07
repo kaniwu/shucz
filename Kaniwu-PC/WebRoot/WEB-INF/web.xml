@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="3.0" 
+	xmlns="http://java.sun.com/xml/ns/javaee" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee 
+	http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+	<distributable/>
+  <display-name>微信公共平台开发者接口</display-name>
+			<filter>
+				<filter-name>WeChatFilter</filter-name>
+				<filter-class>com.kaniwu.filter.WechatFilter</filter-class>
+			</filter>
+			<filter-mapping>
+				<filter-name>WeChatFilter</filter-name>
+				<url-pattern>/kaniwu/*</url-pattern>
+			</filter-mapping>
+			<servlet>
+   				<description>This is the description of my J2EE component</description>
+			    <display-name>This is the display name of my J2EE component</display-name>
+			    <servlet-name>StartServer</servlet-name>
+			    <servlet-class>com.kaniwu.common.process.WechatServerStartProcess</servlet-class>
+			    <init-param>
+  					<param-name>jdbcUrl</param-name>
+  					<param-value>/etc/*.properties</param-value>
+ 				</init-param>
+  				<load-on-startup>0</load-on-startup>
+  			</servlet>
+			
+			
+			<welcome-file-list>
+				<welcome-file>index.jsp</welcome-file>
+			</welcome-file-list>
+</web-app>
