@@ -155,8 +155,8 @@ public final class C3p0DBConnManager
 			 try {
 				  Class. forName(ConfKit.getC3p0("driver_url")).newInstance();
 	             
-	               connection = DriverManager.getConnection(ConfKit.getC3p0("db_url_m"), ConfKit.getC3p0("db_user"), ConfKit.getC3p0("db_pass"));
-//				  connection = DriverManager.getConnection(ConfKit.getC3p0("jdbcUrl"), ConfKit.getC3p0("user"), ConfKit.getC3p0("password"));
+//	               connection = DriverManager.getConnection(ConfKit.getC3p0("db_url_m"), ConfKit.getC3p0("db_user"), ConfKit.getC3p0("db_pass"));
+				  connection = DriverManager.getConnection(ConfKit.getC3p0("jdbcUrl"), ConfKit.getC3p0("user"), ConfKit.getC3p0("password"));
 	         } catch (IllegalAccessException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
